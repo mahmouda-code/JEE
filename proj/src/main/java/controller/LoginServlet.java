@@ -12,19 +12,31 @@ import java.io.IOException;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
-        if (EmployeeService.authenticate(username, password)) {
+        Role role = AuthService.authenticate(username, password);
+
+        if (role != null) {
             HttpSession session = request.getSession();
-            session.setAttribute("user", username);
-            session.setAttribute("role", EmployeeService.getUserRole(username));
-            response.sendRedirect("dashboard.jsp");
+            session.setAttribute("role", role); // Stocke le rôle dans la session
+
+            // Redirige selon le rôle
+            switch (role) {
+                case ADMIN:
+                    response.sendRedirect("admin/dashboard.jsp");
+                    break;
+                case MANAGER:
+                    response.sendRedirect("manager/dashboard.jsp");
+                    break;
+                default:
+                    response.sendRedirect("employee/dashboard.jsp");
+            }
         } else {
-            request.setAttribute("error", "Identifiants incorrects");
+            request.setAttribute("error", "Identifiants invalides !");
             request.getRequestDispatcher("login.jsp").forward(request, response);
         }
     }
+
 }
