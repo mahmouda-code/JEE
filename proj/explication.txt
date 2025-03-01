@@ -1,0 +1,12 @@
+Mahmouda: 
+
+L'objectif est de créer un système où :
+
+Les utilisateurs peuvent se connecter avec un nom d'utilisateur et un mot de passe.
+
+Chaque utilisateur a un rôle (Admin, Manager, Employé) qui détermine ce qu'il peut faire dans l'application.
+
+Les pages sensibles (comme celles réservées aux admins) sont protégées et accessibles uniquement par les utilisateurs autorisés.
+
+Toutou:
+
