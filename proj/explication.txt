@@ -1,4 +1,15 @@
+      //les rôles des membres du groupe//
+      
+*NB: Un Administrateur peut gérer plusieurs Départements et Employés.
+     Un ResponsableDeDepartement est assigné à un seul Département et peut évaluer plusieurs Employés.
+     Un Employé appartient à un seul Département.
+     
+      
+      
+
 Mahmouda: 
+
+Authentification et gestion des rôles  
 
 L'objectif est de créer un système où :
 
@@ -7,6 +18,46 @@ Les utilisateurs peuvent se connecter avec un nom d'utilisateur et un mot de pas
 Chaque utilisateur a un rôle (Admin, Manager, Employé) qui détermine ce qu'il peut faire dans l'application.
 
 Les pages sensibles (comme celles réservées aux admins) sont protégées et accessibles uniquement par les utilisateurs autorisés.
+[
+Prévoir un administrateur par défaut avec l'identifiant "admin" et le mot de passe 
+"admin". 
+]
 
 Toutou:
+
+-CRUD des employés. 
+Gestion des employés (Ajout, modification, suppression) - (Administrateur)
+
+[
+• Employé :    
+ Peut consulter ses propres informations personnelles et professionnelles.   
+ Peut mettre à jour certaines de ses informations personnelles.  
+ 
+]
+
+
+MK :
+ 
+-CRUD des Departement. 
+[ 
+• Responsable de département :    
+o Peut évaluer les performances des employés de son département.    
+o Peut consulter les informations des employés de son département.   
+]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
