@@ -9,6 +9,5 @@ public class Employe {
     private String address;
     private String phone;
     private String email;
-    private Department department;
     private Role role;
 }
