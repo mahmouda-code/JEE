@@ -1,29 +1,21 @@
 package service;
 
 import model.Role;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class RoleService {
-    private static List<Role> roles = new ArrayList<>();
-
-    static {
-        roles.add(Role.ADMIN);
-        roles.add(Role.RESPONSABLE);
-        roles.add(Role.EMPLOYE);
-    }
-
-    public List<Role> getRoles() {
-        return roles;
-    }
+    private Map<String, Role> roles = new HashMap<>();
 
     public void ajouterRole(Role role) {
-        if (!roles.contains(role)) {
-            roles.add(role);
-        }
+        roles.put(role.getNom().toUpperCase(), role);
     }
 
-    public void supprimerRole(Role role) {
-        roles.remove(role);
+    public void supprimerRole(String roleNom) {
+        roles.remove(roleNom.toUpperCase());
+    }
+
+    public Map<String, Role> getRoles() {
+        return roles;
     }
 }

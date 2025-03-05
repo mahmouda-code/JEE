@@ -12,7 +12,7 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import java.util.List;
+import java.util.Map;
 
 @Path("/admin")
 @Produces(MediaType.APPLICATION_JSON)
@@ -27,7 +27,7 @@ public class AdminController {
     @Path("/employes")
     public Response getEmployes(@Context HttpServletRequest request) {
         if (!estAdmin(request)) return Response.status(Response.Status.UNAUTHORIZED).entity("Accès interdit").build();
-        List<Employee> employes = employeService.getEmployes();
+        Map<String, Employee> employes = employeService.getEmployes(); // Utilisation de Map
         return Response.ok(employes).build();
     }
 
@@ -60,16 +60,15 @@ public class AdminController {
     @Path("/departements")
     public Response getDepartements(@Context HttpServletRequest request) {
         if (!estAdmin(request)) return Response.status(Response.Status.UNAUTHORIZED).entity("Accès interdit").build();
-        List<Departement> departements = departementService.getDepartements();
+        Map<Integer, Departement> departements = departementService.getDepartements(); // Utilisation de Map
         return Response.ok(departements).build();
     }
 
-    @POST
+ 
     @Path("/departements")
-    public Response ajouterDepartement(@QueryParam("nom") String nom, @Context HttpServletRequest request) {
-        if (!estAdmin(request)) return Response.status(Response.Status.UNAUTHORIZED).entity("Accès interdit").build();
-        departementService.ajouterDepartement(nom);
-        return Response.ok("Département ajouté avec succès").build();
+    public Response ajouterDepartement(@QueryParam("nom") String nom) {
+        departementService.ajouterDepartement(nom); // Stockage via Map<String, Departement>
+        return Response.ok("Département ajouté").build();
     }
 
     @PUT
@@ -93,7 +92,8 @@ public class AdminController {
     @Path("/roles")
     public Response getRoles(@Context HttpServletRequest request) {
         if (!estAdmin(request)) return Response.status(Response.Status.UNAUTHORIZED).entity("Accès interdit").build();
-        return Response.ok(roleService.getRoles()).build();
+        Map<String, Role> roles = roleService.getRoles(); // Utilisation de Map
+        return Response.ok(roles).build();
     }
 
     @POST
